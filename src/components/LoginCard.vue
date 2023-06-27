@@ -88,18 +88,18 @@ const checkServer = async (token) => {
       }
     });
 
-    console.log("Server And User Role Check Success");
+
     return true;
   } catch (error) {
     if (error.response) {
       switch (error.response.status) {
         case 403:
-          console.log('403 error: Forbidden');
+
           emits('onError', '해당 시스템에 접근할 권한이 없습니다. 관리자에게 문의하세요 ')
           break;
         case 404:
         case 500:
-          console.log('404 error: Not Found');
+
           emits('onError', '서버 연결중 에러가 발생했습니다. 다시 시도해 주세요.')
           break;
 
@@ -122,15 +122,15 @@ onMounted(async () => {
     if (user) {
       const token = await user.getIdToken()
       const status = await checkServer(token)
-      console.log(token)
+
       if(!status) {
         authStore.setLogin(false)
         await signOut(auth);
         emits('onFinish')
         localStorage.setItem('inLoginProcess', 'false')
-        console.log("Login Fail")
+
       } else{
-        console.log("Login Success");
+
         authStore.setLogin(true)
         emits('onFinish')
         localStorage.setItem('inLoginProcess', 'false')

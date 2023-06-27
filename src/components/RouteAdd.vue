@@ -118,7 +118,7 @@ const props = defineProps({
 const roles = props.roles
 const options = props.options
 const methods = props.methods
-console.log(methods)
+
 
 const path = ref('')
 const role = ref(null)

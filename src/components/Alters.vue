@@ -22,7 +22,6 @@ function addAlert(type, message) {
 
   const id = Math.random().toString(36).substring(7);
   alerts.value.push({ id, type, message });
-  console.log(alerts)
 }
 
 function removeAlert(index) {

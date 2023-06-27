@@ -92,7 +92,7 @@ const id = route.params.id
 const alters = ref(null)
 
 const processLoginCheckerError = (error) => {
-  console.log(error)
+
   alters.value.addAlert('error', error);
 }
 
@@ -292,8 +292,6 @@ const deleteRoute = (id) => {
 }
 
 const updateRoute = (id, data) => {
-  console.log(id)
-  console.log(data)
   const index = routes.value.findIndex(route => route.id === id);
   if (index !== -1) {
     // 기존의 서비스 객체와 새로운 서비스 데이터를 병합하고, 새 배열을 만들어서 할당합니다.

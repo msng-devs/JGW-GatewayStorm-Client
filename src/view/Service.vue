@@ -76,7 +76,7 @@ const {accessToken} = storeToRefs(authStore)
 //Auth Controller 에러 처리
 const alters = ref(null);
 const processLoginCheckerError = (error) => {
-  console.log(error)
+
   alters.value.addAlert('error',error);
 }
 
@@ -128,7 +128,7 @@ const openAddDialog = () => {
 
 const editDialog = ref(false);
 const editService = (name,description,domain,id) => {
-  console.log(name,description,domain,id)
+
   editDialog.value.openDialog(name,description,domain,id);
 }
 
@@ -153,8 +153,7 @@ const deleteService = (id) => {
 }
 
 const updateService = (id, data) => {
-  console.log(id)
-  console.log(data)
+
   const index = services.value.findIndex(service => service.id === id);
   if (index !== -1) {
     services.value = [

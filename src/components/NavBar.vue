@@ -49,9 +49,9 @@ const goHome = () => {
 const logout = async () => {
   try {
     await signOut(auth);
-    console.log('User logged out');
+
     authStore.setLogin(false)
-    console.log(authStore.isLogin);
+
   } catch (error) {
     console.error('Failed to log out', error);
   }
