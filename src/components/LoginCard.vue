@@ -51,7 +51,7 @@
 import {GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut,} from "firebase/auth";
 import {auth} from '../firebase.config'
 import {useAuthStore} from "../store/auth.store";
-import {inject, onMounted} from "vue";
+import {inject, onBeforeMount, onMounted} from "vue";
 import {tr} from "vuetify/locale";
 
 const emits = defineEmits(['onFinish', 'onError'])
@@ -96,19 +96,27 @@ const checkServer = async (token) => {
         case 403:
 
           emits('onError', '해당 시스템에 접근할 권한이 없습니다. 관리자에게 문의하세요 ')
+          authStore.setLogin(false)
+          await signOut(auth);
           break;
         case 404:
         case 500:
 
           emits('onError', '서버 연결중 에러가 발생했습니다. 다시 시도해 주세요.')
+          authStore.setLogin(false)
+          await signOut(auth);
           break;
 
         default:
           emits('onError', '알 수 없는 에러가 발생했습니다. 다시 시도해 주세요.')
+          authStore.setLogin(false)
+          await signOut(auth);
           break;
       }
     } else if (error.request) {
       emits('onError', '서버에 연결할 수 없습니다. 네트워크 상태를 확인해주세요.')
+      authStore.setLogin(false)
+      await signOut(auth);
     }
 
     return false;
@@ -117,7 +125,8 @@ const checkServer = async (token) => {
 
 
 
-onMounted(async () => {
+onBeforeMount(async () => {
+
   await onAuthStateChanged(auth, async (user) => {
     if (user) {
       const token = await user.getIdToken()
@@ -141,7 +150,6 @@ onMounted(async () => {
       emits('onError', '로그인에 실패했습니다.')
     }
   });
-
 
 })
 </script>
