@@ -97,6 +97,7 @@ const alters = ref(null);
 
 const processLoginCardError = (error) => {
   alters.value.addAlert('error',error);
+  changeInLoginProcess();
 }
 </script>
 
