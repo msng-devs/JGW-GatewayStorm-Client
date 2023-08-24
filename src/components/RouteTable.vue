@@ -72,6 +72,7 @@ const headers = [
   {title: 'ROLE', align: 'center', key: 'role_id'},
   {title: 'HTTP METHOD', align: 'center', key: 'method_id'},
   {title: '옵션', align: 'center', key: 'route_option_id'},
+  {title: '우선 순위', align: 'center', key: 'priority'},
   {title: '관리', align: 'center', key: 'action'}
 ]
 
