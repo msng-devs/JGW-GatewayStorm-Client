@@ -276,7 +276,7 @@ const editRouteDialog = ref(false);
 const openEditDialog = (item) => {
 
 
-  editRouteDialog.value.openDialog(item.id,item.path,item.role_id,item.method_id,item.route_option_id);
+  editRouteDialog.value.openDialog(item.id,item.path,item.role_id,item.method_id,item.route_option_id,item.priority);
 }
 
 

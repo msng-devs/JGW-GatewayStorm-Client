@@ -87,8 +87,6 @@ const checkServer = async (token) => {
         Authorization: `Bearer ${token}`
       }
     });
-
-
     return true;
   } catch (error) {
     if (error.response) {

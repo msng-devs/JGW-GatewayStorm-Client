@@ -42,6 +42,13 @@
                     ></v-select>
                   </v-col>
                   <v-col cols="12" md="12">
+                    <v-text-field
+                        v-model="priority"
+                        label="우선 순위*"
+                        required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="12">
                     <v-select
                         v-show="option === '4'"
                         v-model="role"
@@ -147,6 +154,7 @@ const path = ref('')
 const role = ref('')
 const method = ref('')
 const option = ref('')
+const priority = ref(0)
 const axios = inject('axios')
 
 const authStore = useAuthStore();
@@ -163,7 +171,8 @@ const editRoute = async () => {
     path: path.value,
     method: method.value,
     option_id: option.value,
-    role_id: role.value,
+    role_id: role.value === '' ? '0' : role.value,
+    priority: priority.value,
   }
   const response = await axios
       .put('/api/v1/service/'+id+"/apiRoute/"+routeId, data ,{
@@ -225,13 +234,14 @@ const editRoute = async () => {
           }
         });
 }
-const openDialog = (t_id,t_path,t_role,t_method,t_option) => {
+const openDialog = (t_id,t_path,t_role,t_method,t_option,t_priority) => {
 
   path.value = t_path
   routeId = t_id
   role.value = String(t_role)
   method.value = String(t_method)
   option.value = String(t_option)
+  priority.value = t_priority
   isOpen.value = true
 }
 defineExpose({
