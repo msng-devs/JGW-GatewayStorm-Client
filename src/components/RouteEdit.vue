@@ -171,7 +171,7 @@ const editRoute = async () => {
     path: path.value,
     method: method.value,
     option_id: option.value,
-    role_id: role.value === '' ? '0' : role.value,
+    role_id: role.value === '' || role.value === 'null' ? '0' : role.value,
     priority: priority.value,
   }
   const response = await axios
